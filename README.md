@@ -6,12 +6,12 @@ Damian: robie 5, chcialbym jeszcze zrobic 11,15,17, pozdro
 ## Ideas
 Pomysły, które chcieliśmy ogarniać:
 
-  __1.  licznik przekleństw__ (do zrobienia w liczenie_slow.R)
-  __2.  wszystko co zwiazane z xd i hahaha__ (liczenie_slow.R)
-  __3.  wpisanie słowa i pokazanie jak się go używało w czasie__ (liczenie_slow.R)
+  1.  __licznik przekleństw__ (do zrobienia w liczenie_slow.R)
+  2.  __wszystko co zwiazane z xd i hahaha__ (liczenie_slow.R)
+  3.  __wpisanie słowa i pokazanie jak się go używało w czasie__ (liczenie_slow.R)
   4.  mapa znajomych
   5.  top używanych słów
-  __6.  timeline pisania wiadomości, czyli kiedy się ich duzo pisało itd__ (liczenie_slow.R) 
+  6.  __timeline pisania wiadomości, czyli kiedy się ich duzo pisało itd__ (liczenie_slow.R) 
   7.  porownanie ilosci wiadomosci w gupach i w osobistych konwersacjach
   8.  ogarnięcie dni w ktorych duzo roznych osob do ciebie napisala
   9.  ilosc uzytkownikow ktorym nigdy nie odpisales
