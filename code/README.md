@@ -13,6 +13,7 @@ Dodatkowo jeśli będziemy mieć już kilka plików to warto wiedzieć, co jest 
 
   * _wczytanie_json.R_ - wczytuje sie tu pliki .json z /messages/inbox. Są do tego dwie funkcje: load_one_conversation() i load_all_conversations(). Myślę, że nazwy mówią same za siebie. (Przykład użycia funkcji: `mess_df <- load_all_conversations()` - macie ramke ze wszystkimi konwersacjami i jest git.
   * _twd_fb_dane.ipynb_ - mazuryk ogarniał wczytywanie polskich znaków z plikow .json
+  * _liczenie_slow.R_ - #TODO, nie chce mi sie teraz, nie mam siły
 
 
 Jak macie lepszy pomysł jak tym zarządzać to git. Jak się wam nie chce do tego stosować unlucky panowie.
