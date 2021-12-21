@@ -24,3 +24,6 @@ Pomysły, które chcieliśmy ogarniać:
   16.  coś z zaproszeniami do znajomych i o tym czy mamy uprzedzenia względem jakiegoś imienia
 
 pisać dalsze pomysły, __bold__ to co się udało zrobić, ~~skreślać~~ to co nie wyjdzie bo słabe/nie ma danych 
+
+## Co potem
+Myśle, że jak porobimy troche tego (co nie będzie jakieś bardzo odległe w czasie bo złapałem giga zajawkę) to dopiero zaczniemy tworzyć stronę.
