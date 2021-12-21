@@ -122,7 +122,7 @@ xd_haha_comparison <- function(df,xd,haha){
 
 messages_sent <- function(df,start_date,end_date){ #robie to, ze bedzie mozna w shiny dac slidera na przyklad z datami
   #funckja podlicza laczna ilosc wiadomosci w kazdym miesiacu od start_date do end_date
-  df <- my %>% 
+  df <- df %>% 
     group_by(month = floor_date(Date_Y_M_D,"month")) %>% 
     count() %>% 
     filter(month > start_date,month <end_date) 
