@@ -1,17 +1,17 @@
 ## Updates
 żeby nie było sytuacji, że dwie osoby będą pracowały nad tym samym przez co będzie strata czasu można tu pisać w trakcie tworzenia czego aktualnie jesteście:
 
-robie 1, 2, 3, 4 - Damian, pozdro
+Damian: robie 5, chcialbym jeszcze zrobic 11,15,17, pozdro
 
 ## Ideas
 Pomysły, które chcieliśmy ogarniać:
 
-  1.  licznik przekleństw
-  2.  wszystko co zwiazane z xd i hahaha
-  3.  wpisanie słowa i pokazanie jak się go używało w czasie
+  __1.  licznik przekleństw__ (do zrobienia w liczenie_slow.R)
+  __2.  wszystko co zwiazane z xd i hahaha__ (liczenie_slow.R)
+  __3.  wpisanie słowa i pokazanie jak się go używało w czasie__ (liczenie_slow.R)
   4.  mapa znajomych
   5.  top używanych słów
-  6.  timeline pisania wiadomości, czyli kiedy się ich duzo pisało itd
+  __6.  timeline pisania wiadomości, czyli kiedy się ich duzo pisało itd__ (liczenie_slow.R) 
   7.  porownanie ilosci wiadomosci w gupach i w osobistych konwersacjach
   8.  ogarnięcie dni w ktorych duzo roznych osob do ciebie napisala
   9.  ilosc uzytkownikow ktorym nigdy nie odpisales
@@ -22,7 +22,7 @@ Pomysły, które chcieliśmy ogarniać:
   14.  gierki messengerowe
   15.  godziny, w których się pisze wiadomości (do tego trzeba jakoś ogarnąć kolumnę timestamp_ms dodatkowo, bo w Date_Y_M_D zrobiłem że nie ma godziny, ewentualnie dodać godzinę w tej kolumnie)
   16.  coś z zaproszeniami do znajomych i o tym czy mamy uprzedzenia względem jakiegoś imienia
-
+  17. najdłuższe xd i czemu było takie poteżne
 pisać dalsze pomysły, __bold__ to co się udało zrobić, ~~skreślać~~ to co nie wyjdzie bo słabe/nie ma danych 
 
 ## Co potem
