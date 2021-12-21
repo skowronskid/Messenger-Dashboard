@@ -1,6 +1,7 @@
 ## Updates
 żeby nie było sytuacji, że dwie osoby będą pracowały nad tym samym przez co będzie strata czasu można tu pisać w trakcie tworzenia czego aktualnie jesteście:
 
+robie 1, 2, 3, 4 - Damian, pozdro
 
 ## Ideas
 Pomysły, które chcieliśmy ogarniać:
