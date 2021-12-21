@@ -1,7 +1,7 @@
 ## Updates
 żeby nie było sytuacji, że dwie osoby będą pracowały nad tym samym przez co będzie strata czasu można tu pisać w trakcie tworzenia czego aktualnie jesteście:
 
-Damian: robie 5, chcialbym jeszcze zrobic 11,15,17, pozdro
+Damian: robie 5, 18, chcialbym jeszcze zrobic 11,15,17, pozdro
 
 ## Ideas
 Pomysły, które chcieliśmy ogarniać:
@@ -23,6 +23,7 @@ Pomysły, które chcieliśmy ogarniać:
   15.  godziny, w których się pisze wiadomości (do tego trzeba jakoś ogarnąć kolumnę timestamp_ms dodatkowo, bo w Date_Y_M_D zrobiłem że nie ma godziny, ewentualnie dodać godzinę w tej kolumnie)
   16.  coś z zaproszeniami do znajomych i o tym czy mamy uprzedzenia względem jakiegoś imienia
   17. najdłuższe xd i czemu było takie poteżne
+  18. najdłuższy day streak
 
 
 pisać dalsze pomysły, __bold__ to co się udało zrobić, ~~skreślać~~ to co nie wyjdzie bo słabe/nie ma danych 
