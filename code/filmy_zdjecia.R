@@ -1,7 +1,6 @@
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 source("wczytanie_json.R")
 library(reshape2)
-library(ggplot2)
-library(dplyr)
 
 df <- load_all_conversations()
 
