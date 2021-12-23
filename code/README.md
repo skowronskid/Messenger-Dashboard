@@ -17,6 +17,6 @@ Dodatkowo jeśli będziemy mieć już kilka plików to warto wiedzieć, co jest 
   * _day_streak.R_ - funkcja `day_streak()`  zwraca nieprzerwane serie dni, w których z kimś pisaliśmy w chacie osobistym, a do tego kiedy te serie się zaczęły i skończyły i z kim były, dla wszystkich naszych konwersacji. Funkcja  `day_streak_1p()` robi to samo tylko dla jednej konwersacji jaką wybierzemy.
   * _potezne_xd.R_ - funkcja `get_potezne_xd()` znajduje nasze najdłuższe "xd" (niezaleznie od wielkości liter) i zwraca nam kilka wiadomości przed i po tym jak to się wydarzyło 
   * _top_slowa_reakcje.R_ - funkcja `top_slowa()` zwraca nam najczesciej uzywane przez nas słowa w zależności od minimalnej ilości liter. `top_reakcje()` działa, ale nie wiem czy się uda to.
-
-
+  * _rozne_osoby.R_ - funkcjia `rozne_osoby` zwraca listę wszystkich dni wraz z ilością osób, które wtedy do nas napisały.
+  * _filmy_zdjecia.R_ - funkcja `filmy_zdjecia` zwraca listę osób wraz z ilością zdjęć i filmów które wysłały.
 Jak macie lepszy pomysł jak tym zarządzać to git. Jak się wam nie chce do tego stosować unlucky panowie.
