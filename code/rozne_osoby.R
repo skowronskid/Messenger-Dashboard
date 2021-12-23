@@ -4,8 +4,9 @@ source("wczytanie_json.R")
 
 df <- load_all_conversations()
 
-rozne_osoby <- function(df){
-  df1 <- df %>% group_by(Date_Y_M_D) %>% summarise(il_osob = n_distinct(sender_name))
+rozne_osoby <- function(big_df, receiver){
+  #receiver - string bedacy sender_name jednego z nas
+  df1 <- big_df %>% group_by(Date_Y_M_D) %>% filter(sender_name!=receiver) %>% summarise(il_osob = n_distinct(sender_name))
   df1
 }
 
