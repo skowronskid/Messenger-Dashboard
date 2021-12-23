@@ -13,7 +13,7 @@ Pomysły, które chcieliśmy ogarniać:
   5.  __top używanych słów__ (top_slowa_reakcje.R)
   6.  __timeline pisania wiadomości, czyli kiedy się ich duzo pisało itd__ (liczenie_slow.R) 
   7.  porownanie ilosci wiadomosci w gupach i w osobistych konwersacjach
-  8.  ogarnięcie dni w ktorych duzo roznych osob do ciebie napisala
+  8.  __ogarnięcie dni w ktorych duzo roznych osob do ciebie napisala__ (rozne_osoby.R)
   9.  ilosc uzytkownikow ktorym nigdy nie odpisales
   10.  podliczanie top emoji / emotek
   11.  __podliczenie top reakcji__ (top_slowa_reakcje.R)
