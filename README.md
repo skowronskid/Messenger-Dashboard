@@ -18,7 +18,7 @@ Pomysły, które chcieliśmy ogarniać:
   10.  podliczanie top emoji / emotek
   11.  __podliczenie top reakcji__ (top_slowa_reakcje.R)
   12.  lokalizacja
-  13.  liczba zdjęć/filmów
+  13.  __liczba zdjęć/filmów__ (filmy_zdjecia.R)
   14.  gierki messengerowe
   15.  godziny, w których się pisze wiadomości (do tego trzeba jakoś ogarnąć kolumnę timestamp_ms dodatkowo, bo w Date_Y_M_D zrobiłem że nie ma godziny, ewentualnie dodać godzinę w tej kolumnie)
   16.  coś z zaproszeniami do znajomych i o tym czy mamy uprzedzenia względem jakiegoś imienia
