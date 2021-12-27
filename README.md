@@ -30,4 +30,4 @@ zostało 17, 11, 10, 9, 7, 5, 4, 3, 2 nwm jak skreślić te co brak danych
 pisać dalsze pomysły, __bold__ to co się udało zrobić, ~~skreślać~~ to co nie wyjdzie bo słabe/nie ma danych 
 
 ## Co potem
-Myśle, że jak porobimy troche tego (co nie będzie jakieś bardzo odległe w czasie bo złapałem giga zajawkę) to dopiero zaczniemy tworzyć stronę.
+app jest początkiem aplikacji możemy dodawać kolejne strony tak żeby rozwijać wątki
