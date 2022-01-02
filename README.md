@@ -12,16 +12,16 @@ Pomysły, które chcieliśmy ogarniać:
   4.  mapa znajomych
   5.  __top używanych słów__ (top_slowa_reakcje.R)
   6.  __timeline pisania wiadomości, czyli kiedy się ich duzo pisało itd__ (liczenie_slow.R) (mam Michał)
-  7.  porownanie ilosci wiadomosci w gupach i w osobistych konwersacjach
+  7.  porownanie ilosci wiadomosci w grupach i w osobistych konwersacjach
   8.  __ogarnięcie dni w ktorych duzo roznych osob do ciebie napisala__ (rozne_osoby.R) (mam Michał)
   9.  ilosc uzytkownikow ktorym nigdy nie odpisales
   10.  podliczanie top emoji / emotek
   11.  __podliczenie top reakcji__ (top_slowa_reakcje.R)
-  12.  !lokalizacja (nie ma danych Michał)
+  12.  ~~lokalizacja~~ (nie ma danych Michał)
   13.  __liczba zdjęć/filmów__ (filmy_zdjecia.R) (mam Michał)
-  14.  !gierki messengerowe (nie ma danych takich Michał)
+  14.  ~~gierki messengerowe~~ (nie ma danych takich Michał)
   15.  godziny, w których się pisze wiadomości (do tego trzeba jakoś ogarnąć kolumnę timestamp_ms dodatkowo, bo w Date_Y_M_D zrobiłem że nie ma godziny, ewentualnie dodać godzinę w tej kolumnie) (mam Michał)
-  16.  !coś z zaproszeniami do znajomych i o tym czy mamy uprzedzenia względem jakiegoś imienia (nie ma danych dużo)
+  16.  ~~coś z zaproszeniami do znajomych i o tym czy mamy uprzedzenia względem jakiegoś imienia~~ (nie ma danych dużo)
   17. __najdłuższe xd i czemu było takie poteżne__ (potezne_xd.R)
   18. __najdłuższy day streak__ (day_streak.R) (mam Michał)
 
