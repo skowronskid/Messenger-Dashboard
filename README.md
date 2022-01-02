@@ -25,7 +25,7 @@ Pomysły, które chcieliśmy ogarniać:
   17. __najdłuższe xd i czemu było takie poteżne__ (potezne_xd.R)
   18. __najdłuższy day streak__ (day_streak.R) (mam Michał)
 
-zostało 17, 11, 10, 9, 7, 5, 4, 3, 2 nwm jak skreślić te co brak danych
+zostało 17, 11, 10, 9, 7, 5, 4, 3, 2 nwm jak skreślić te co brak danych - skreśla się dając dwa razy ~ przed i po tym co sie chce skreslać ~.~skreslone~.~ bez kropek
 
 pisać dalsze pomysły, __bold__ to co się udało zrobić, ~~skreślać~~ to co nie wyjdzie bo słabe/nie ma danych 
 
