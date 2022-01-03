@@ -19,4 +19,5 @@ Dodatkowo jeśli będziemy mieć już kilka plików to warto wiedzieć, co jest 
   * _top_slowa_reakcje.R_ - funkcja `top_slowa()` zwraca nam najczesciej uzywane przez nas słowa w zależności od minimalnej ilości liter. `top_reakcje()` działa, ale nie wiem czy się uda to.
   * _rozne_osoby.R_ - funkcja `rozne_osoby` zwraca listę wszystkich dni wraz z ilością osób, które wtedy do nas napisały.
   * _filmy_zdjecia.R_ - funkcja `filmy_zdjecia` zwraca listę osób wraz z ilością zdjęć i filmów które wysłały.
+
 Jak macie lepszy pomysł jak tym zarządzać to git. Jak się wam nie chce do tego stosować unlucky panowie.
