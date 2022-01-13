@@ -1,9 +1,9 @@
 ## Working link
-nie ma bo mam problem deployowaniem tej aplikacji.....
+https://skowronski.shinyapps.io/working_app/, nie działają emotki na razie
 
 
 ## Updates
-Dodałem cały folder _working_app_ z aplikacją. Dodawajcie do tego. Dajcie znać, czy działa wam, bo kurwa nie mogę umieścić na internecie tego....
+Dodałem cały folder _working_app_ z aplikacją. Dodawajcie do tego.
 
 ## Ideas
 Pomysły, które chcieliśmy ogarniać:
