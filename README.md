@@ -1,7 +1,8 @@
+## Working link
+
+
 ## Updates
 żeby nie było sytuacji, że dwie osoby będą pracowały nad tym samym przez co będzie strata czasu można tu pisać w trakcie tworzenia czego aktualnie jesteście:
-
-Damian: zrobie 15, ale teraz już robie przerwe od tego projektu, pozdro
 
 ## Ideas
 Pomysły, które chcieliśmy ogarniać:
@@ -20,7 +21,7 @@ Pomysły, które chcieliśmy ogarniać:
   12.  ~~lokalizacja~~ (nie ma danych Michał)
   13.  __liczba zdjęć/filmów__ (filmy_zdjecia.R) (mam Michał)
   14.  ~~gierki messengerowe~~ (nie ma danych takich Michał)
-  15.  godziny, w których się pisze wiadomości (do tego trzeba jakoś ogarnąć kolumnę timestamp_ms dodatkowo, bo w Date_Y_M_D zrobiłem że nie ma godziny, ewentualnie dodać godzinę w tej kolumnie) (mam Michał)
+  15.  __godziny, w których się pisze wiadomości (do tego trzeba jakoś ogarnąć kolumnę timestamp_ms dodatkowo, bo w Date_Y_M_D zrobiłem że nie ma godziny, ewentualnie dodać godzinę w tej kolumnie)__ (mam Michał) 
   16.  ~~coś z zaproszeniami do znajomych i o tym czy mamy uprzedzenia względem jakiegoś imienia~~ (nie ma danych dużo)
   17. __najdłuższe xd i czemu było takie poteżne__ (potezne_xd.R)
   18. __najdłuższy day streak__ (day_streak.R) (mam Michał)
