@@ -1,8 +1,9 @@
 ## Working link
+nie ma bo mam problem deployowaniem tej aplikacji.....
 
 
 ## Updates
-żeby nie było sytuacji, że dwie osoby będą pracowały nad tym samym przez co będzie strata czasu można tu pisać w trakcie tworzenia czego aktualnie jesteście:
+Dodałem cały folder _app_ z aplikacją. Dodawajcie do tego. Dajcie znać, czy działa wam, bo kurwa nie mogę umieścić na internecie tego....
 
 ## Ideas
 Pomysły, które chcieliśmy ogarniać:
