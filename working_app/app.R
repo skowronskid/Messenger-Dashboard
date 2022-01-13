@@ -5,7 +5,7 @@ library(ggdark)
 library(DT)
 
 
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+#setwd(dirname(rstudioapi::getActiveDocumentContext()$path)) jedna linkijka przy deployowaniu aplikacji, a tyle wkurwiania
 source("wczytanie_json.R")
 source("liczenie_slow.R")
 source("day_streak.R")
