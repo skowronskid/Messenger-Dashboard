@@ -13,7 +13,7 @@
 # //www.r-bloggers.com/2018/06/working-with-your-facebook-data-in-r/e  
 # ^^^^^^^^^^^^^  ten link mocno pomogl ogarnac co i jak 
 
-#przy okazji wczytuje potrzebne potem biblioteki
+
 
 library(tidyverse)
 library(jsonlite)
@@ -23,8 +23,8 @@ library(data.table)
 
 
 #zeby znormalizowac dzialanie zakladam, ze masz ten skrypt w folderze z rozpakowanym zipem od fb
-#zeby dziala?o wszystko fajnie bez podawania dlugich sciezek ustawiam working directory
-# setwd(dirname(rstudioapi::getActiveDocumentContext()$path)) 
+#zeby dzialalo wszystko fajnie bez podawania dlugich sciezek ustawiam working directory
+# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 current_path <- str_replace_all(getwd(), pattern = "[/]", replacement = "\\\\")
 
 
@@ -39,7 +39,7 @@ load_one_conversation <- function(dir_name,participant_name, new = F){
   # wczytywanie uzywajac participent_name jest dluzsze poniewaz, najpierw funkcja musi znalezc odpowiedni folder
   # wczytywanie uzywajac participent_name w przeciwienstwie do dir_name nie zwraca rozmow grupowych, wylacznie indywidualne
   #
-  # new jeĹ›li ramki majÄ… juĹĽ przekonwertowane polskie litery
+
   
   if(!missing(dir_name)){
     path <- paste0(current_path,"\\messages\\inbox\\",dir_name)
@@ -96,7 +96,6 @@ load_all_conversations <- function(show_progress = F, new = F){
   # show_progress - dla TRUE, bedzie wypisywac ile procent konwersacji sie wczytalo, 
   # poniewaz zajmuje to troche czasu i zeby bylo wiadomo, ze cos sie dzieje w tle
   # 
-  # new jeĹ›li ramki majÄ… juĹĽ przekonwertowane polskie litery
   path <-paste0(current_path,"\\messages\\inbox\\")
   if(new){
     path <-paste0(current_path,"\\new\\messages\\inbox\\") 
@@ -139,8 +138,8 @@ load_all_conversations <- function(show_progress = F, new = F){
 
 
 make_my_df <- function(file_name){
-  # reticulate::py_run_file(file = "decode_encode.py")
-  
+  reticulate::py_run_file(file = "decode_encode.py")
+
   mess_df <- load_all_conversations(show_progress = T,new = T)
   mess_df <- flatten(mess_df)
   messs_df <- mess_df %>% 
@@ -159,20 +158,28 @@ make_my_df <- function(file_name){
   messs_df$actor <- sub( ".*actor = ","",messs_df$reactions)
   messs_df$reactions <- sub( ", actor.*","",messs_df$reactions)
   
-  messs_df$reactions <- gsub(r"(<U\+000|<U\+)","",messs_df$reactions)
-  messs_df$reactions <- gsub(">","",messs_df$reactions)
-  messs_df$reactions <- gsub(r"(<U\+000)"," ",messs_df$reactions)
+  # messs_df$reactions <- gsub(r"(<U\+000|<U\+)","",messs_df$reactions)
+  
+  # messs_df$reactions <- gsub(r"(<U\+000|<U\+)","",messs_df$reactions)
+  # messs_df$reactions <- gsub(">","",messs_df$reactions)
+  # messs_df$reactions <- gsub(r"(<U\+000)"," ",messs_df$reactions)
+  
+  # messs_df$actor <- enc2native(messs_df$actor)
+
+  messs_df$actor <- stringi::stri_trans_general(messs_df$actor,"Latin-ASCII")
+  messs_df$actor <- str_replace_all(messs_df$actor,"3","l")
   
   Encoding(messs_df$sender_name) <- "unknown"
   Encoding(messs_df$content) <- "unknown"
   Encoding(messs_df$actor) <- 'unknown'
+  
   fwrite(messs_df, file_name)              
 }
 
-#zrobienie ramki do apki
-# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-# make_my_df("diego.csv")
 
+# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+# # make_my_df("diego.csv")
+# 
 # diego<- fread("diego.csv",encoding = "UTF-8")
 
 
