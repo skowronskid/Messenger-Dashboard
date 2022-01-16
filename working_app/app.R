@@ -12,7 +12,9 @@ source("day_streak.R")
 source("top_slowa_reakcje.R")
 source("potezne_xd.R")
 source("dashboard_theme.R")
-
+#dodaje Janek
+source("rozne_osoby.R")
+source("filmy_zdjecia.R")
 
 
 diego_all<- fread("diego.csv",encoding = "UTF-8")
@@ -94,7 +96,21 @@ ui <- dashboardPage(
                 plotlyOutput("haha_xd_plot")
               )
              
-              )#end tendencies tab
+              ),#end tendencies tab
+      
+      
+      ### dodane przez Janka
+            tabItem(tabName = "new",
+                    fluidRow(
+                    box(
+                        plotlyOutput("rozne_osoby_plot")
+                        )
+            
+                    ),
+                    tabBox(
+                        tabPanel("Plot", plotlyOutput("zdjecia_plot")),
+                        tabPanel("Table", DTOutput("zdjecia_dt")),
+                    ))
     )
   ) #end dashboardBody
 ) #end ui
@@ -366,7 +382,53 @@ server <- function(input, output,session) {
    
  # mógłbym tu jeszcze troche pododawać pewnie, ale na razie zostawiam jak jest
    
-
+ # dodaje Janek
+    output$rozne_osoby_plot <- renderPlotly({
+        if(input$fighter == "Magic Mike"){receiver = "Michał Mazuryk"}
+        else if(input$fighter == "Big Diego"){receiver = "Damian Skowroński"}
+        else{receiver = "Janek Kruszewski"}
+        all <- all_data$df
+        plt3 <- ggplot(rozne_osoby(all,receiver), aes(month, il_osob)) +
+        geom_line(size = 0.2, linejoin = "round")+
+        scale_x_date(date_labels = "%m-%Y",date_breaks = "6 months",expand = c(0,0))+
+        scale_y_continuous(expand = expansion(mult = c(0, 0.05), add = c(0.1, 0))) +
+        labs(y ="Number of people",title = "Number of poeple writing to us timeline")+
+        dark_theme_gray(base_family = "Arial") +
+        theme(axis.text.x = element_text(angle = 90),axis.title.x = element_blank(),
+              plot.background = element_rect(fill = GRAY_DARK),
+              panel.background = element_rect(fill =GRAY_LIGHT),
+              plot.title = element_text(hjust = 0.5, size = 20)) 
+    ggplotly(plt3) %>% config(displayModeBar = F)
+    }) %>% bindCache(input$fighter)
+    
+    
+    
+    
+    
+    output$zdjecia_plot <- renderPlotly({
+        all <- all_data$df
+        df1 <- photos_videos(all) %>% head(11) %>% slice(-1) %>% mutate(sender_name = forcats::fct_reorder(sender_name,photo)) 
+        
+        plt4 <- ggplot(df1, aes(x = sender_name, y = photo))+
+            geom_col()+
+            labs(y = "Number of photos", title = "Top senders of photos") +
+            scale_y_continuous(expand = expansion(mult = c(0, 0.05), add = c(0.1, 0))) +
+            dark_theme_gray(base_family = "Arial") +
+            theme(axis.text.y = element_text(size = 15),
+                  axis.title.y = element_blank(),
+                  plot.background = element_rect(fill = GRAY_DARK),
+                  panel.background = element_rect(fill =GRAY_LIGHT),
+                  plot.title = element_text(hjust = 0.5, size = 20),
+                  panel.grid.major.y = element_blank()) +
+            coord_flip()
+        ggplotly(plt4) %>% config(displayModeBar = F)
+    }) %>% bindCache(input$fighter)
+    
+    output$zdjecia_dt <- renderDT({
+        all <- all_data$df
+        df <- photos_videos(all)
+        df
+    },options = list(pageLength=8),server = F) %>% bindCache(input$fighter)
   
 
   
