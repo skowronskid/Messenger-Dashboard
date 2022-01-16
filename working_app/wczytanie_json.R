@@ -139,7 +139,7 @@ load_all_conversations <- function(show_progress = F, new = F){
 
 
 make_my_df <- function(file_name){
-  reticulate::py_run_file(file = "decode_encode.py")
+  # reticulate::py_run_file(file = "decode_encode.py")
   
   mess_df <- load_all_conversations(show_progress = T,new = T)
   mess_df <- flatten(mess_df)
@@ -170,8 +170,8 @@ make_my_df <- function(file_name){
 }
 
 #zrobienie ramki do apki
-# setwd(dirname(rstudioapi::getActiveDocumentContext()$path)) 
-#make_my_df("diego.csv")
+# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+# make_my_df("diego.csv")
 
 # diego<- fread("diego.csv",encoding = "UTF-8")
 
