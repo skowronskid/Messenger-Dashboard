@@ -1,8 +1,7 @@
-# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-# source("liczenie_slow.R")
 
 
-# df <- load_all_conversations()
+
+
 
 get_potezne_xd_messages <- function(df,sender,before = 5,after = 5){
   my <- make_my_df(df,sender)

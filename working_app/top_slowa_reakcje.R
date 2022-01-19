@@ -1,5 +1,3 @@
-# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-# source("liczenie_slow.R")
 
 
 
@@ -16,16 +14,29 @@ top_slowa <- function(df,min= 0){
 # head(test,20) #kurwa dopiero na 16, wiedzialem ze nie jestem wulgarnym czlowiekiem
 
 
-suppressWarnings(suppressMessages(emoji <- read.csv("emoji-test.csv",encoding = "UTF-8")))
+
+# emoji <- jsonlite::fromJSON("emoji-en-US.json")
+# emoji_names <- c()
+# n <- length(emoji)
+# for(i in 1:n){
+#   emoji_names <-  c(emoji_names,emoji[[i]][1])
+# }
+# 
+# emoji_df <- data.frame(emoji = names(emoji),emoji_names = emoji_names,raw = enc2native(names(emoji))) 
+# emoji_df[127,3] <- "<U+2764>"
+# fwrite(emoji_df,"emoji_df.csv")
+
+
+
+emojis <- fread("emoji_df.csv",encoding = "UTF-8")
+
 top_reakcje <- function(df,act){
-  suppressWarnings(
-    react_df <- df %>% select(reactions,actor) %>% filter(!is.na(reactions))  %>% 
+  df$actor <- enc2native(df$actor)
+  react_df <- df %>% select(reactions,actor) %>% filter(!is.na(reactions))  %>%
     mutate(actor = strsplit(actor, ", "),reactions = strsplit(reactions, ", ")) %>% 
-    unnest(actor,reactions) %>% filter(actor == act) %>% table() %>% as.data.frame() %>% slice_max(Freq,n = 20) %>% 
-    left_join(emoji,by = c("reactions" = "utf"))
-  )
-  react_df
+    unnest(actor,reactions)  %>% 
+    filter(actor == act) %>% table() %>% as.data.frame() %>% na.omit() %>% slice_max(Freq,n = 20) 
+  test <- merge(react_df,emojis, by.x = "reactions", by.y = "raw")[,-1]
+  test[,-1]
 }
-
-
 

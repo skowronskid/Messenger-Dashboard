@@ -1,5 +1,4 @@
-# setwd(dirname(rstudioapi::getActiveDocumentContext()$path)) 
-# source("wczytanie_json.R")
+
 
 
 

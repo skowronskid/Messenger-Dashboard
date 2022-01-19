@@ -1,15 +1,12 @@
-# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-# source("wczytanie_json.R")
 
-# mess_df <- load_all_conversations(show_progress = T)
 
-make_my_df <- function(big_df,sender){
-  # tylko swoje wiadomosci
-  my <- big_df %>% filter(sender_name == sender)
-  my
-}
+# make_my_df <- function(big_df,sender){
+#   # tylko swoje wiadomosci
+#   my <- big_df %>% filter(sender_name == sender)
+#   my
+# }
 
-# my <- make_my_df(mess_df,"Damian Skowro\u00c5\u0084ski") #robie dla siebie
+
 
 get_nr_of_messages <- function(df){
   #zwraca ilosc wiadomosci w zaleznosci od osoby w formie ramki danych
@@ -26,7 +23,7 @@ get_nr_of_messages <- function(df){
  
 
 substring_count <- function(my_df, slowa){
-  #zaznaczam, ĹĽe tu dzieje nie szukamy slowa w calosci tylko zaliczy tez czesc slowa
+  #zaznaczam, tu dzieje nie szukamy slowa w calosci tylko zaliczy tez czesc slowa
   # na przyklad jesli szukam xd to znajde tez xd w xdd, czaisz
   # ze substring tez policzy
   searching <- str_extract_all(my_df$content, paste(slowa, collapse="|")) 
@@ -50,7 +47,6 @@ word_count <- function(my_df,slowa){
 
 
 df_words_timeline <- function(df, words){
- 
   final_df <- data.frame()
   for(word in words){
     slowo_trends <- df[grepl(word,df$content),] 
@@ -73,9 +69,7 @@ words_timeline <- function(df){
   final_df
 }
 
-# words_timeline(my,c("xd","bruh"))
 
-# ogarniacie timelinu dla najczesciej uzywanych xd i haha
 
 get_xd <- function(df){
   string_xd <- str_extract_all(df$content, "\\b[xX]+[dD]+\\b")
@@ -85,22 +79,17 @@ get_xd <- function(df){
 
 
 
-#words_timeline(my,do_por_xd)
 
 
 get_haha <- function(df){
   string_haha <- str_extract_all(df$content, r"(\b(?:a*(?:ha)+h?|h*ha+h[ha]*)\b)")
   haha_df <- as.data.frame(table(na.omit(unlist(string_haha)))) %>% arrange(desc(Freq))
+  haha_df <- haha_df[(haha_df$Var!="aha")&(haha_df$Var!="ha"),]
   as.character(haha_df$Var1[1:5])
 }
 
 
-#words_timeline(my,do_por_haha) 
 
-
-
-# xd <- get_xd(df)
-# haha <- get_haha(df)
 
 
 xd_haha_comparison <- function(df,xd,haha){
@@ -127,15 +116,16 @@ xd_haha_comparison <- function(df,xd,haha){
   final_df <- final_df %>%
     pivot_wider(names_from = month, values_from = n,values_fill = 0) %>%
     pivot_longer(cols = -word, names_to = "month" ,values_to = "n") %>%
-    mutate(month = as.Date(month))
-  plt <- ggplot(final_df,aes(x = month,y = n,group = word,color = word))+
+    mutate(Month = as.Date(month)) %>% 
+    rename("Times used" = "n","Word" = "word")
+  plt <- ggplot(final_df,aes(x = Month,y = `Times used`,group = Word,color = Word))+
     geom_line() +
     scale_x_date(date_breaks = "1 year",date_labels = "%Y") +
     labs(x = "year", y = "number of words", color = "roznego rodzaju")
   plt
 }
 
-# plt1 <-xd_haha_comparison(my,do_por_xd,do_por_haha)
+
 
 
 messages_sent <- function(df,start_date =  as.Date("1970/01/01"),end_date = Sys.Date()){ #robie to, ze bedzie mozna w shiny dac slidera na przyklad z datami
@@ -147,16 +137,81 @@ messages_sent <- function(df,start_date =  as.Date("1970/01/01"),end_date = Sys.
   df
 }
 
-##tu mozna splotowac wyniki poprzedniej funkcji 
-# plt2 <- messages_sent(tmp,as.Date("2013/01/01"),as.Date("2022/01/01")) %>%
-#   ggplot(aes(x = month,y=n))+
-#   geom_line()+
-#   scale_x_date(date_labels = "%Y")+
-#   labs(x = "year", y ="number of messages")
-# plt2
 
-# library(patchwork)
-# plt1/plt2
+
+
+
+
+yes_or_no <- function(df_only){
+  WHITE_TEXT = "#CDCDCD"
+  GRAY_DARK = "#343E48"
+  GRAY_LIGHT= "#44505A"
+  BLUE = "#038FFF"
+  SALMON = "#FF586A"
+  df1<-df_words_timeline(df_only,c("tak","nie")) %>% mutate(type="no")
+  df1$type[which(df1$word == "tak")]<-"yes"
+  df1 %>% 
+    ggplot(aes(x = month,y = n,group = type,color = type))+
+    geom_line() +
+    scale_x_date(expand = c(0,0)) +
+    scale_y_continuous(expand = expansion(mult = c(0, 0.15), add = c(0.5, 0))) +
+    labs(x = "Year", y = "Times written",title = "")+
+    dark_theme_gray(base_family = "Arial") + 
+    scale_color_manual(labels = c("no", "yes"),values = c(BLUE, SALMON))+
+    theme(plot.background = element_rect(fill = GRAY_DARK),
+          panel.background = element_rect(fill = GRAY_LIGHT),
+          plot.title = element_text(hjust = 0.5, size = 20),
+          legend.title = element_blank(),
+          legend.position = "top",
+          legend.background = element_rect(fill = GRAY_LIGHT, color = GRAY_DARK))
+}
+
+
+ch_word_timeline <- function(df_only,ch_word){
+  WHITE_TEXT = "#CDCDCD"
+  GRAY_DARK = "#343E48"
+  GRAY_LIGHT= "#44505A"
+  BLUE = "#038FFF"
+  SALMON = "#FF586A"
+  df_words_timeline(df_only,c(ch_word)) %>% 
+    ggplot(aes(x = month,y = n,group=1))+
+    geom_line(size=1.5) +
+    scale_y_continuous(expand = expansion(mult = c(0, 0.15), add = c(0.5, 0))) +
+    labs(x = "Year", y = "Times written",title = paste0("\"",ch_word,"\""," timeline"))+
+    dark_theme_gray(base_family = "Arial") + 
+    theme(plot.background = element_rect(fill = GRAY_DARK),
+          panel.background = element_rect(fill = GRAY_LIGHT),
+          plot.title = element_text(hjust = 0.5, size = 20),
+          legend.title = element_blank(),
+          legend.position = "top",
+          legend.background = element_rect(fill = GRAY_LIGHT, color = GRAY_DARK))
+  }
+
+yes_no_geom <- function(df){
+  WHITE_TEXT = "#CDCDCD"
+  GRAY_DARK = "#343E48"
+  GRAY_LIGHT= "#44505A"
+  BLUE = "#038FFF"
+  SALMON = "#FF586A"
+  final_df<-rbind(word_count(df,"tak"),word_count(df,"nie"))
+  final_df$Var1<-c("yes","no")
+  ggplot(data=final_df, aes(x=Var1, y=Freq)) + 
+    geom_col(fill="#FF586A") +
+    geom_text(aes(label=paste0(Var1," - ",Freq)),color='black',size=8, position=position_stack(0.5))+
+    labs(y ="",title = "")+
+    dark_theme_gray(base_family = "Arial") + 
+    theme(plot.background = element_rect(fill = GRAY_DARK),
+          panel.background = element_blank(),
+          axis.title.x=element_blank(),
+          axis.title.y=element_blank(),
+          axis.line=element_blank(),axis.text.x=element_blank(),
+          axis.text.y=element_blank(),axis.ticks=element_blank(),
+          legend.position="none",
+          panel.grid.major=element_blank(),
+          plot.title = element_text(hjust = 0.5, size = 20),
+          legend.title = element_blank(),panel.grid.minor=element_blank(),
+          legend.background = element_rect(fill = GRAY_LIGHT, color = GRAY_DARK))
+}
 
 
 
