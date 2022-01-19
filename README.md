@@ -1,5 +1,5 @@
 ## Working link
-https://skowronski.shinyapps.io/working_app/, nie działają emotki na razie
+https://skowronski.shinyapps.io/working_app/, nie dziala na razie
 
 
 ## Updates
