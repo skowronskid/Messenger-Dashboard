@@ -5,6 +5,7 @@
 # Ten plik daje funkcje wczytujace ramki z plikow .json do dalszego korzystania. Sa nimi:
 # - load_one_conversation() - ktora wczytuje ramke danych dla pojedynczej konwersacji
 # - load_all_conversations() - ktora wczytuje ramke danych dla wszystkich naszych konwersacji
+# - make_my_df() - zamienia kodowanie na UTF-8, wiec polskie znaki sa git, a potem zapisuje .csv
 # wiecej info o funkcjach w ich kodzie
 
 # warto zaznaczyc, ze dla ogarniania z czasem nalezy uzywac kolumny Date_Y_M_D - ktora, ma w formacie date dane w Year-month-day
@@ -23,7 +24,7 @@ library(data.table)
 
 
 #zeby znormalizowac dzialanie zakladam, ze masz ten skrypt w folderze z rozpakowanym zipem od fb
-#zeby dziala?o wszystko fajnie bez podawania dlugich sciezek ustawiam working directory
+#zeby dzialalo wszystko fajnie bez podawania dlugich sciezek ustawiam working directory
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path)) 
 current_path <- str_replace_all(getwd(), pattern = "[/]", replacement = "\\\\")
 
@@ -39,7 +40,7 @@ load_one_conversation <- function(dir_name,participant_name, new = F){
   # wczytywanie uzywajac participent_name jest dluzsze poniewaz, najpierw funkcja musi znalezc odpowiedni folder
   # wczytywanie uzywajac participent_name w przeciwienstwie do dir_name nie zwraca rozmow grupowych, wylacznie indywidualne
   #
-  # new jeĹ›li ramki majÄ… juĹĽ przekonwertowane polskie litery
+
   
   if(!missing(dir_name)){
     path <- paste0(current_path,"\\messages\\inbox\\",dir_name)
@@ -121,13 +122,15 @@ load_all_conversations <- function(show_progress = F, new = F){
       print(paste0(round(i/n*100,1),"%"))
     }
   }
-  full_df$timestamp_ms <- anytime(full_df$timestamp_ms/1000)
-  full_df <- full_df %>% 
-    mutate(Date_Y_M_D = as.Date(timestamp_ms))
+  full_df
+  
+  #mazurykowi nie dzialalo tu wiec mozna zrobic potem 
+  # full_df$timestamp_ms <- anytime(full_df$timestamp_ms/1000)
+  # full_df <- full_df %>% 
+  #   mutate(Date_Y_M_D = as.Date(timestamp_ms))
 }
 
-# ramka taka jak do tej pory
-# mess_df <- load_all_conversations(show_progress = T)
+
 
 
 
@@ -139,7 +142,7 @@ load_all_conversations <- function(show_progress = F, new = F){
 
 
 make_my_df <- function(file_name){
-  # reticulate::py_run_file(file = "decode_encode.py")
+  reticulate::py_run_file(file = "decode_encode.py")
   
   mess_df <- load_all_conversations(show_progress = T,new = T)
   mess_df <- flatten(mess_df)
@@ -159,29 +162,15 @@ make_my_df <- function(file_name){
   messs_df$actor <- sub( ".*actor = ","",messs_df$reactions)
   messs_df$reactions <- sub( ", actor.*","",messs_df$reactions)
   
-  # messs_df$reactions <- gsub(r"(<U\+000|<U\+)","",messs_df$reactions)
-  
-  # messs_df$reactions <- gsub(r"(<U\+000|<U\+)","",messs_df$reactions)
-  # messs_df$reactions <- gsub(">","",messs_df$reactions)
-  # messs_df$reactions <- gsub(r"(<U\+000)"," ",messs_df$reactions)
-  
-  # messs_df$actor <- enc2native(messs_df$actor)
-  
   messs_df$actor <- stringi::stri_trans_general(messs_df$actor,"Latin-ASCII")
   messs_df$actor <- str_replace_all(messs_df$actor,"3","l")
   
   Encoding(messs_df$sender_name) <- "unknown"
   Encoding(messs_df$content) <- "unknown"
   Encoding(messs_df$actor) <- 'unknown'
-  fwrite(messs_df, file_name)              
+  fwrite(messs_df, file_name)
 }
 
-
-#mazuryka trzeba bylo zmienic 
-# mike <- fread("mike.csv", encoding = "UTF-8")
-# mike$actor <- enc2native(mike$actor)
-# mike$actor <- stringi::stri_trans_general(mike$actor,"Latin-ASCII")
-# fwrite(mike,"mike.csv")
 
 
 #zrobienie ramki do apki

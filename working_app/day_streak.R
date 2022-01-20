@@ -1,5 +1,5 @@
 
-
+#liczenie daystreakow jest bardzo czasochlonne wiec nie pojawia sie w apce, ale i tak jest spoko
 
 
 day_streak<- function(show_progress = F){

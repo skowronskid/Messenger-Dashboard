@@ -1,16 +1,12 @@
-
-
-# make_my_df <- function(big_df,sender){
-#   # tylko swoje wiadomosci
-#   my <- big_df %>% filter(sender_name == sender)
-#   my
-# }
-
-
+WHITE_TEXT = "#CDCDCD"
+GRAY_DARK = "#343E48"
+GRAY_LIGHT= "#44505A"
+BLUE = "#038FFF"
+SALMON = "#FF586A"
 
 get_nr_of_messages <- function(df){
   #zwraca ilosc wiadomosci w zaleznosci od osoby w formie ramki danych
-  all_count <- df %>% group_by(sender_name) %>% 
+  df %>% group_by(sender_name) %>% 
     count(name = "nr_of_messages") %>%
     as.data.frame() %>% 
     slice_max(nr_of_messages,n = 30)
@@ -18,7 +14,7 @@ get_nr_of_messages <- function(df){
 
 #przyklady uzycia
 #get_nr_of_messages(mess_df)
-#get_nr_of_messages(load_one_conversation(dir_name = "danonki_pdzoaidjcq"))
+
 
  
 
@@ -56,17 +52,16 @@ df_words_timeline <- function(df, words){
     slowo_trends$word <- word
     final_df <- bind_rows(final_df,slowo_trends)
   }
-  final_df
+  final_df 
 }
 
 
 words_timeline <- function(df){
   #przekazac wynik z df_words_timeline !!!!!!
-  final_df <- df %>%
+  df %>%
     pivot_wider(names_from = month, values_from = n,values_fill = 0) %>%
     pivot_longer(cols = -word, names_to = "month" ,values_to = "n") %>% 
     mutate(month = as.Date(month))
-  final_df
 }
 
 
@@ -93,7 +88,6 @@ get_haha <- function(df){
 
 
 xd_haha_comparison <- function(df,xd,haha){
- 
   final_df <- data.frame()
   for(word in xd){
     slowo_trends <- df[grepl(word,df$content),] 
@@ -111,30 +105,28 @@ xd_haha_comparison <- function(df,xd,haha){
     slowo_trends$word <- "haha"
     final_df <- bind_rows(final_df,slowo_trends)
   }
-  final_df <- final_df %>% group_by(word,month) %>% 
-    summarise(n = sum(n))
-  final_df <- final_df %>%
+  final_df %>% group_by(word,month) %>% 
+    summarise(n = sum(n)) %>% 
     pivot_wider(names_from = month, values_from = n,values_fill = 0) %>%
     pivot_longer(cols = -word, names_to = "month" ,values_to = "n") %>%
     mutate(Month = as.Date(month)) %>% 
-    rename("Times used" = "n","Word" = "word")
-  plt <- ggplot(final_df,aes(x = Month,y = `Times used`,group = Word,color = Word))+
+    rename("Times used" = "n","Word" = "word") %>% 
+    ggplot(aes(x = Month,y = `Times used`,group = Word,color = Word))+
     geom_line() +
     scale_x_date(date_breaks = "1 year",date_labels = "%Y") +
     labs(x = "year", y = "number of words", color = "roznego rodzaju")
-  plt
 }
 
 
 
 
-messages_sent <- function(df,start_date =  as.Date("1970/01/01"),end_date = Sys.Date()){ #robie to, ze bedzie mozna w shiny dac slidera na przyklad z datami
+messages_sent <- function(df,start_date =  as.Date("1970/01/01"),end_date = Sys.Date()){ 
+  #robie to, ze bedzie mozna w shiny dac slidera na przyklad z datami
   #funckja podlicza laczna ilosc wiadomosci w kazdym miesiacu od start_date do end_date
-  df <- df %>% 
+  df %>% 
     group_by(month = lubridate::floor_date(Date_Y_M_D,unit = "month")) %>% 
     count() %>% 
     filter(month > start_date,month <end_date) 
-  df
 }
 
 
@@ -143,11 +135,6 @@ messages_sent <- function(df,start_date =  as.Date("1970/01/01"),end_date = Sys.
 
 
 yes_or_no <- function(df_only){
-  WHITE_TEXT = "#CDCDCD"
-  GRAY_DARK = "#343E48"
-  GRAY_LIGHT= "#44505A"
-  BLUE = "#038FFF"
-  SALMON = "#FF586A"
   df1<-df_words_timeline(df_only,c("tak","nie")) %>% mutate(type="no")
   df1$type[which(df1$word == "tak")]<-"yes"
   df1 %>% 
@@ -155,7 +142,7 @@ yes_or_no <- function(df_only){
     geom_line() +
     scale_x_date(expand = c(0,0)) +
     scale_y_continuous(expand = expansion(mult = c(0, 0.15), add = c(0.5, 0))) +
-    labs(x = "Year", y = "Times written",title = "")+
+    labs(x = "Year", y = "Times written",title = "Are you \"yes\" or \"no\" person")+
     dark_theme_gray(base_family = "Arial") + 
     scale_color_manual(labels = c("no", "yes"),values = c(BLUE, SALMON))+
     theme(plot.background = element_rect(fill = GRAY_DARK),
@@ -168,11 +155,6 @@ yes_or_no <- function(df_only){
 
 
 ch_word_timeline <- function(df_only,ch_word){
-  WHITE_TEXT = "#CDCDCD"
-  GRAY_DARK = "#343E48"
-  GRAY_LIGHT= "#44505A"
-  BLUE = "#038FFF"
-  SALMON = "#FF586A"
   df_words_timeline(df_only,c(ch_word)) %>% 
     ggplot(aes(x = month,y = n,group=1))+
     geom_line(size=1.5) +
@@ -188,11 +170,6 @@ ch_word_timeline <- function(df_only,ch_word){
   }
 
 yes_no_geom <- function(df){
-  WHITE_TEXT = "#CDCDCD"
-  GRAY_DARK = "#343E48"
-  GRAY_LIGHT= "#44505A"
-  BLUE = "#038FFF"
-  SALMON = "#FF586A"
   final_df<-rbind(word_count(df,"tak"),word_count(df,"nie"))
   final_df$Var1<-c("yes","no")
   ggplot(data=final_df, aes(x=Var1, y=Freq)) + 

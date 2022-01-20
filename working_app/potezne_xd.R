@@ -12,8 +12,7 @@ get_potezne_xd_messages <- function(df,sender,before = 5,after = 5){
   one <- which(grepl(df$content,pattern = potezne_xd))
   two <- which(df$sender_name == sender)
   index <- one[one %in% two]
-  wynik <- df[(index-10):(index+10),] %>% select(timestamp_ms,sender_name,content)
-  wynik
+  df[(index-10):(index+10),] %>% select(timestamp_ms,sender_name,content)
 }
 
 get_potezne_xd <- function(df){
@@ -28,7 +27,14 @@ get_potezne_haha <- function(df){
   potezne_xd <- haha_uni[which.max(nchar(haha_uni))]
 }
 
-# moje_xd <- get_potezne_xd(df,"Damian Skowroński")
+get_potezne_k <- function(df){
+  string_ku <- str_extract_all(df$content,  "\\b[kK]+[uU]+[rR]+[wW]+[aA]+\\b")
+  ku_uni <- unique(na.omit(unlist(string_ku)))
+  potezne_ku <- ku_uni[which.max(nchar(ku_uni))]
+}
+get_potezne_f <- function(df){
+  string_f <- str_extract_all(df$content,  "\\b[fF]+[uU]+[cC]+[kK]+\\b")
+  f_uni <- unique(na.omit(unlist(string_f)))
+  potezne_f <- f_uni[which.max(nchar(f_uni))]
+}
 
-
-#jakos to sie zaprezentuje fajnie
