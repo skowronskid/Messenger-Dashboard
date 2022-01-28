@@ -1,9 +1,7 @@
 ## Working link
-https://skowronski.shinyapps.io/working_app/, nie dziala na razie
+https://skowronski.shinyapps.io/messenger - jest kox już, yessir
 
-
-## Updates
-Dodałem cały folder _working_app_ z aplikacją. Dodawajcie do tego.
+# Not up to date
 
 ## Ideas
 Pomysły, które chcieliśmy ogarniać:
@@ -29,7 +27,6 @@ Pomysły, które chcieliśmy ogarniać:
 
 zostało 17, 11, 10, 9, 7, 5, 4, 3, 2 nwm jak skreślić te co brak danych - skreśla się  "~" przed i po tym co sie chce skreslać ~skreslone~ 
 
-pisać dalsze pomysły, __bold__ to co się udało zrobić, ~~skreślać~~ to co nie wyjdzie bo słabe/nie ma danych 
+__bold__ to co się udało zrobić, ~~skreślać~~ to co nie wyjdzie bo słabe/nie ma danych 
 
-## Co potem
-app jest początkiem aplikacji możemy dodawać kolejne strony tak żeby rozwijać wątki
+
